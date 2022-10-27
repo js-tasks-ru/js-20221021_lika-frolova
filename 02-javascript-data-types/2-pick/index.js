@@ -6,4 +6,12 @@
  */
 export const pick = (obj, ...fields) => {
 
-};
+    const result = {}
+    const entries = Object.entries(obj).filter(x => fields.includes(x[0]))
+
+    for (const [key, value] of entries) {
+        result[key] = value
+    }
+
+    return result
+}
