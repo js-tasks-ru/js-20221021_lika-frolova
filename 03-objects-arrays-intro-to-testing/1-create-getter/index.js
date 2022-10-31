@@ -5,4 +5,16 @@
  */
 export function createGetter(path) {
 
+    return function(obj) {
+
+        let value = obj
+        const props = path.split(".")
+
+        for (const prop of props) {
+            value = value[prop]
+            if (!value) break            
+        }
+
+        return value
+    }
 }
