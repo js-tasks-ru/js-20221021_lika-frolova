@@ -58,7 +58,8 @@ export default class ColumnChart {
         if (!this._elementLink) {
             this._elementLink = document.createElement("a")
             this._elementLink.className = "column-chart__link"
-            this._elementLink.innerHTML = `<a href="${this.link}">View all</a>`
+            this._elementLink.innerHTML = "View all"
+            this._elementLink.setAttribute("href", this.link)
         }        
 
         return this._elementLink
