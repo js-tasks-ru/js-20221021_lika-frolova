@@ -110,8 +110,6 @@ export default class SortableTable {
   getHeaderCell(item) {
     return `<div class="sortable-table__cell" data-id="${item.id}" data-sortable="${item.sortable}">
               <span>${item.title}</span>
-            </div>
-            `
+            </div>`
   }
 }
-

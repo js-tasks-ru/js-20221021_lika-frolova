@@ -4,8 +4,8 @@ export default class NotificationMessage {
 
     constructor(message = '', {duration = 0, type = ''} = {}) {
         this.message = message
-        this.duration = durationIsValid(duration) ? duration : 20
-        this.type = typeIsValid(type) ? type : ''
+        this.duration = this.durationIsValid(duration) ? duration : 20
+        this.type = this.typeIsValid(type) ? type : ''
     }
 
     show(parent = document.body) {
@@ -53,13 +53,13 @@ export default class NotificationMessage {
                     </div>
                 </div>`
     }  
-}
 
-const durationIsValid = (duration) => {
-    return typeof duration === "number" &&
-           duration > 0
-}
-
-const typeIsValid = (type) => {
-    return ["success", "error"].includes(type)
+    durationIsValid(duration) {
+        return typeof duration === "number" &&
+               duration > 0
+    }
+    
+    typeIsValid(type) {
+        return ["success", "error"].includes(type)
+    }
 }
