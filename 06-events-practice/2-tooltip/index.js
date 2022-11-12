@@ -25,6 +25,7 @@ class Tooltip {
     this._element = null
     document.removeEventListener("pointerover", this.pointerOver)    
     document.removeEventListener("pointerout", this.pointerOut)   
+    document.removeEventListener("pointermove", this.pointerMove)   
   }
 
   render(label) {
@@ -51,8 +52,8 @@ class Tooltip {
   }
 
   pointerMove = (event) => {
-    this.element.style.left = event.pageX + 'px';
-    this.element.style.top =  event.pageY + 'px';
+    this.element.style.left = event.pageX + 10 + 'px';
+    this.element.style.top =  event.pageY + 10 + 'px';
   }
 
   get element() {
