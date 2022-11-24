@@ -15,7 +15,7 @@ export default class ColumnChart {
         this.label = label
         this.link = link
         this.chartHeight = chartHeight
-        this.url = url
+        this.url = new URL(this.url, BACKEND_URL)
         this.dateFrom = range?.from
         this.dateTo = range?.to
         this.formatHeading = formatHeading
@@ -27,11 +27,10 @@ export default class ColumnChart {
 
         this.element.classList.add('column-chart_loading')
 
-        let url = new URL(this.url, BACKEND_URL)
-        url.searchParams.set('from', from)
-        url.searchParams.set('to', to)
+        this.url.searchParams.set('from', from)
+        this.url.searchParams.set('to', to)
 
-        this.data = await fetchJson(url)
+        this.data = await fetchJson(this.url)
         this.from = from
         this.to = to
 
@@ -103,7 +102,7 @@ export default class ColumnChart {
         const values = Object.values(this.data)
 
         const maxValue = Math.max(...values)
-        let bodyChilds = []
+        const bodyChilds = []
 
         for (const item of values) {
             const columnProps = this.getColumnProps(item, maxValue)

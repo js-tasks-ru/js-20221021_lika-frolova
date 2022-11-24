@@ -3,7 +3,7 @@ export default class DoubleSlider {
     constructor ({min, max, formatValue, selected = {} } = {}) {       
         this.min = min ?? 0
         this.max = max ?? 200
-        this.rangeValue = this.max - this.min
+        this.rangeValue = this.max - this.min > 0 ? this.max - this.min : 1
         this.formatValue = formatValue
         this.from = selected?.from ?? min
         this.to = selected?.to ?? max

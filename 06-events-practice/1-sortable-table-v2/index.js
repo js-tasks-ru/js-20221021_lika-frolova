@@ -1,6 +1,6 @@
 export default class SortableTable {
-  static DESC = "desc"
-  static ASC = "asc"
+  DESC = "desc"
+  ASC = "asc"
 
   constructor(headersConfig, {
     data = [],
@@ -43,7 +43,7 @@ export default class SortableTable {
   }
 
   onClickHeader = (event) => {
-    let cell = event.target.closest('[data-sortable="true"]')
+    const cell = event.target.closest('[data-sortable="true"]')
 
     if (cell && this.element.contains(cell)) {
     
@@ -51,7 +51,7 @@ export default class SortableTable {
         this.sorted.order = this.inversionSortType
       } else {
         this.sorted.id = cell.dataset.id
-        this.sorted.order = SortableTable.DESC
+        this.sorted.order = this.DESC
       }
       
       this.sort(this.sorted.id, this.sorted.order)
@@ -59,8 +59,8 @@ export default class SortableTable {
   }
 
   get inversionSortType() {
-    if (this.sorted.order === SortableTable.DESC) return SortableTable.ASC
-    if (this.sorted.order === SortableTable.ASC) return SortableTable.DESC
+    if (this.sorted.order === this.DESC) return this.ASC
+    if (this.sorted.order === this.ASC) return this.DESC
   }
 
   sort(fieldValue, orderValue) {
@@ -98,9 +98,9 @@ export default class SortableTable {
 
   getSortType = (param) => {
     switch (param) {
-        case SortableTable.ASC:
+        case this.ASC:
             return 1
-        case SortableTable.DESC:
+        case this.DESC:
             return -1
         default:
             throw "Передан некорректный тип сортировки!"
@@ -145,7 +145,7 @@ export default class SortableTable {
     this.remove()
     this._body = null  
     this._header = null
-    this._element - null      
+    this._element = null      
   }
 
   remove() {
